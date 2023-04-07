@@ -23,9 +23,10 @@ function MealsOverviewScreen() {
   );
 
   function renderMealItem({
-    item: { title, imageUrl, duration, complexity, affordability },
+    item: { title, imageUrl, duration, complexity, affordability, id },
   }) {
     const mealItemProps = {
+      id,
       title,
       imageUrl,
       duration,
