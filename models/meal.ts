@@ -1,4 +1,18 @@
 class Meal {
+  public id: string;
+  public categoryIds: string;
+  public title: string;
+  public imageUrl: string;
+  public ingredients: string;
+  public steps: string;
+  public duration: string;
+  public complexity: string;
+  public affordability: string;
+  public isGlutenFree: boolean;
+  public isVegan: boolean;
+  public isVegetarian: boolean;
+  public isLactoseFree: boolean;
+
   constructor(
     id,
     categoryIds,

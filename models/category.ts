@@ -1,4 +1,8 @@
 class Category {
+  public id: string;
+  public title: string;
+  public color: string;
+
   constructor(id, title, color) {
     this.id = id;
     this.title = title;
