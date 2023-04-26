@@ -7,9 +7,14 @@ import List from "../components/MealDetail/List";
 import { useCallback, useContext, useLayoutEffect } from "react";
 import IconButton from "../components/IconButton";
 import { FavoritesContext } from "../store/context/favorites-context";
+import { useAppDispatch, useAppSelector } from "../store/redux/store";
+import { addFavorite, removeFavorite } from "../store/redux/favorites";
 
 function MealDetailScreen() {
-  const favoriteMealsCtx = useContext(FavoritesContext);
+  // const favoriteMealsCtx = useContext(FavoritesContext);
+
+  const { ids } = useAppSelector((state) => state.favoriteMeals);
+  const dispatch = useAppDispatch();
 
   const route = useRoute();
   const navigation = useNavigation();
@@ -26,19 +31,17 @@ function MealDetailScreen() {
     steps,
   } = meal;
 
-  const isFavorite = favoriteMealsCtx.ids.includes(id);
+  const isFavorite = ids.includes(id);
 
   const favoritePressHandler = useCallback((): void => {
     if (isFavorite) {
-      favoriteMealsCtx.removeFavorite(id);
+      // favoriteMealsCtx.removeFavorite(id);
+      dispatch(removeFavorite({ id }));
     } else {
-      favoriteMealsCtx.addFavorite(id);
+      // favoriteMealsCtx.addFavorite(id);
+      dispatch(addFavorite({ id }));
     }
-  }, [
-    isFavorite,
-    favoriteMealsCtx.removeFavorite,
-    favoriteMealsCtx.addFavorite,
-  ]);
+  }, [isFavorite, dispatch]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
